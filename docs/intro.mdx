@@ -1,0 +1,152 @@
+---
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Tutorial Intro
+
+## Getting Started
+
+### Create an Atlas project and cluster
+
+  <details>
+    <summary>Toggle for atlas documentation</summary>
+    <div>
+      <iframe height="1000px" width="100%" src="https://www.mongodb.com/docs/atlas/getting-started/">
+      </iframe>
+    </div>
+  </details>
+
+### Create a app services application (`Bakery`)
+
+  <details>
+    <summary>Toggle for app services documentation</summary>
+    <div>
+      <iframe height="1000px" width="100%" src="https://www.mongodb.com/docs/atlas/app-services/manage-apps/create/create-with-ui/">
+      </iframe>
+    </div>
+  </details>
+
+### Create a charts dashboard
+
+  <details>
+    <summary>Toggle for charts documentation</summary>
+    <div>
+      <iframe height="1000px" width="100%" src="https://www.mongodb.com/docs/atlas/app-services/manage-apps/create/create-with-ui/">
+      </iframe>
+    </div>
+  </details>
+
+### Configure graphQL and Google API values
+
+You will need to go to the graphQL tab and configure collections: `cakes`, `comments`
+
+In the values tab add a value and a secret for the Google API url:
+```
+gcpSentimentAnalyseURL="https://language.googleapis.com/v1/documents:analyzeSentiment"
+
+gcpAPIKey=<YOUR_API_KEY>
+```
+
+### Create Functions
+
+You will need to go to the function tab and configure function that queries Google NLP for a comment sentiment (`analyseComment`):
+
+#### Expected input/output
+
+<Tabs
+  defaultValue="input"
+  values={[
+    {label: 'Input', value: 'input'},
+    {label: 'Output', value: 'output'},
+  ]}>
+  <TabItem value="input">
+
+```js
+   {
+     "_id":{"$oid":"62d3e173f6cbe28877663a85"},
+   "cakeId":{"$oid":"62d3cb0606fb4ffe788463a7"},
+   "date":{"$date":{"$numberLong":"1658052978841"}},
+   "name":"Stanimira",
+   "text":"eh, it's ok"
+   }
+```
+
+  </TabItem>
+  <TabItem value="output">
+
+```js
+   {"documentSentiment":{"magnitude":{"$numberDouble":"0.0"},
+   "score":{"$numberDouble":"0.0"}},
+   "language":"en-US",
+   "sentences":[{"text":{"content":"eh, it's ok","beginOffset":{"$numberDouble":"-1.0"}},
+                  "sentiment":{"magnitude":{"$numberDouble":"0.0"},
+                  "score":{"$numberDouble":"0.0"}}}]}
+```
+
+  </TabItem>
+</Tabs>
+
+
+<details>
+        <summary>Hint</summary>
+        <div>
+<Tabs
+  defaultValue="hint"
+  values={[
+    {label: 'Hint', value: 'hint'},
+    {label: 'Suggested Answer', value: 'answer'},
+  ]}>
+  <TabItem value="hint">
+
+```js
+   exports = async function(comment){
+  
+  //get("gcpSentimentAnalyseURL")
+  
+  //get("gcpAPIKey")
+
+  
+  //post({GOOGLE})
+  // The response body is a BSON.Binary object. Parse it and return.
+  //return response
+};
+```
+
+  </TabItem>
+  <TabItem value="answer">
+
+```js
+   exports = async function(comment){
+  
+  const URL = context.values.get("gcpSentimentAnalyseURL")
+  
+  const gcpAPIKey = context.values.get("gcpAPIKey")
+
+  
+  const response = await context.http.post({
+    url: `${URL}?key=${gcpAPIKey}`,
+    body: {
+          "document": {
+        "type": "PLAIN_TEXT",
+        "language": "en-US",
+        "content": comment
+  }
+},
+    encodeBodyAsJSON: true
+  })
+  // The response body is a BSON.Binary object. Parse it and return.
+  return JSON.parse(response.body.text());
+};
+```
+
+  </TabItem>
+</Tabs>
+</div>
+</details>
+
+Get started with the app now.
+
+
