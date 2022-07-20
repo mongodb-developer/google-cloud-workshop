@@ -49,7 +49,7 @@ MongoDB Atlas is the best way to deploy, manage, and grow MongoDB on Google Clou
 
 ### Configure graphQL and Google API values
 
-You will need to go to the graphQL tab and configure collections: `cakes`, `comments`
+In your app services application will need to go to the schema tab and configure collections: `cakes`, `comments`.
 
 In the values tab add a value and a secret for the Google API url:
 ```
@@ -58,7 +58,7 @@ gcpSentimentAnalyseURL="https://language.googleapis.com/v1/documents:analyzeSent
 gcpAPIKey=<YOUR_API_KEY>
 ```
 
-### Create Functions
+### Create Function
 
 You will need to go to the function tab and configure function that queries Google NLP for a comment sentiment (`analyseComment`):
 
@@ -147,6 +147,101 @@ You will need to go to the function tab and configure function that queries Goog
   })
   // The response body is a BSON.Binary object. Parse it and return.
   return JSON.parse(response.body.text());
+};
+```
+
+  </TabItem>
+</Tabs>
+</div>
+</details>
+
+### Create Trigger
+
+You will need to go to the triggers tab and configure trigger that fires on a new comment insert and call the function (
+  `analyseComment`:
+
+#### Expected input/output
+
+<Tabs
+  defaultValue="input"
+  values={[
+    {label: 'Input', value: 'input'},
+    {label: 'Output', value: 'output'},
+  ]}>
+  <TabItem value="input">
+
+Inserted:
+```js
+   {
+     "_id":{"$oid":"62d3e173f6cbe28877663a85"},
+   "cakeId":{"$oid":"62d3cb0606fb4ffe788463a7"},
+   "date":{"$date":{"$numberLong":"1658052978841"}},
+   "name":"Stanimira",
+   "text":"eh, it's ok"
+   }
+```
+
+  </TabItem>
+  <TabItem value="output">
+
+Document after trigger:
+```js
+   {
+    "_id":{"$oid":"62d3e173f6cbe28877663a85"},
+   "cakeId":{"$oid":"62d3cb0606fb4ffe788463a7"},
+   "date":{"$date":{"$numberLong":"1658052978841"}},
+   "name":"Stanimira",
+   "text":"eh, it's ok",
+   "documentSentiment": {"magnitude":{"$numberDouble":"0.0"},
+   "score":{"$numberDouble":"0.0"}},
+   "language":"en-US",
+   "sentences":[{"text":{"content":"eh, it's ok","beginOffset":{"$numberDouble":"-1.0"}},
+                  "sentiment":{"magnitude":{"$numberDouble":"0.0"},
+                  "score":{"$numberDouble":"0.0"}}}]}
+```
+
+  </TabItem>
+</Tabs>
+
+
+<details>
+        <summary>Hint</summary>
+        <div>
+<Tabs
+  defaultValue="hint"
+  values={[
+    {label: 'Hint', value: 'hint'},
+    {label: 'Suggested Answer', value: 'answer'},
+  ]}>
+  <TabItem value="hint">
+
+```js
+   exports = async function(changeEvent) {
+ 
+   // get fullDocument 
+
+   //Execute analyseComment on text field
+   
+   // set result.documentSentiment on the relevant comment document in "comments" collection.
+   
+   
+};
+```
+
+  </TabItem>
+  <TabItem value="answer">
+
+```js
+   exports = async function(changeEvent) {
+ 
+   const fullDocument = changeEvent.fullDocument;
+   const comments = context.services.get("mongodb-atlas").db("Bakery").collection("comments");
+   
+   const result = await context.functions.execute("analyseComment", fullDocument.text);
+    
+   await comments.updateOne({"_id" : fullDocument._id }, {$set : { "documentSentiment" : result.documentSentiment}});
+   
+   
 };
 ```
 
