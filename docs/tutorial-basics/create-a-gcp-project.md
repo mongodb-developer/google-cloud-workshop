@@ -13,8 +13,7 @@ Go to your [gcp](https://cloud.google.com) account and have a project selected/c
  <details>
     <summary>Toggle for google documentation</summary>
     <div>
-      <iframe height="1000px" width="100%" src="https://cloud.google.com/resource-manager/docs/creating-managing-projects">
-      </iframe>
+     - [Create a project](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
     </div>
   </details>
 
