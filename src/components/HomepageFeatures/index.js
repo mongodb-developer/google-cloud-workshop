@@ -4,42 +4,39 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Multi-Cloud, Multi-Region Database Service',
+    illustration: '/img/database.png',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Deploy your applications to multiple cloud platforms across multiple regions, including Google Cloud. 
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Fully-Integrated Developer Data Platform',
+    illustration: '/img/app-services.png',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Build and run production-ready apps on top of Atlas in a fraction of the time with fully managed cloud services such as Functions, Triggers, and APIs.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'AI/ML Capabilities',
+    illustration: '/img/analytics.png',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Leverage the Google Cloud Natural Language API to analyze text and extract business insights.
       </>
     ),
   },
 ];
 
-function Feature({Svg, title, description}) {
+function Feature({illustration, title, description}) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        <img src={illustration} className={styles.featureImg} role="img" />
       </div>
       <div className="text--center padding-horiz--md">
         <h3>{title}</h3>

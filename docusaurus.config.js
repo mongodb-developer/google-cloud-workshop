@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'MongoDB Atlas and Google Cloud Workshop',
-  tagline: 'feat. AI/ML, GraphQL, cakes, and more',
+  tagline: 'Learn about Atlas App Services, GraphQL, Google Cloud Natural Language API, Google Cloud Run, and more',
   url: 'https://mongodb-developer.github.io/',
   baseUrl: '/',
   projectName: 'mongodb-developer.github.io',
@@ -89,16 +89,12 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'Forums',
+                href: 'https://www.mongodb.com/community/forums/',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                label: 'Developer Center',
+                href: 'https://www.mongodb.com/developer/',
               },
             ],
           },
