@@ -67,7 +67,7 @@ const config = {
             label: 'Atlas and Google Cloud Tutorial',
           },
           {
-            href: 'https://github.com/mongodb-developer/GCP-Workshop-Bakery',
+            href: 'https://github.com/mongodb-developer/mongodb-developer.github.io',
             label: 'GitHub',
             position: 'right',
           },
