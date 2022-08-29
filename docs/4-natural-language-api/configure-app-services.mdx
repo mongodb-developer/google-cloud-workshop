@@ -1,0 +1,139 @@
+---
+sidebar_position: 3
+---
+
+# Use the API in Atlas App Services to Analyze Sentiment
+
+Now we want to start linking the Natural Language API with Atlas App Services so we can use it from within our app.
+Before starting this section, make sure you have the Atlas App Services 'Bakery' application open in your browser.
+
+## Create a Value for the NL API URL and Key
+
+We want to store some values from GCP, including our new API key, inside App Services values, so they can be accessed from within multiple services, including Functions and Triggers.
+
+1. Select **Values** from the left menu under the **Build** heading.
+
+1. Click **Create New Value**.
+
+1. Enter the following details in the form that appears:
+- Give Your Value a Name: **gcpAPIKey**. 
+- Choose a Type: **Secret**.
+- Add Content: Insert your API key you copied from Google Cloud in the last section.
+- Click **Save Value**.
+
+1. We now need to create a second Value, so click **Create New Value** in the top right and add the following:
+
+- Give Your Value a Name: **gcpSentimentAnalyzeURL**.
+- Choose a Type: **Value**.
+- Add Content as Custom Content with the value (including the double quotes): “https://language.googleapis.com/v1/documents:analyzeSentiment”.
+- Click **Save Draft**.
+
+1. By its very nature, a secret is a secret. So in order to access it, we need to define an additional value that points to our secret that we can then call from our function later. 
+Click **Create a New Value** and add the following:
+- Give Your Value a Name: **gcpAPIKey**. 
+- Choose a Type: **Value**.
+- Add Content: **Link to Secret**.
+- **gcpAPIKey**.
+- Click **Save Value**.
+
+1. Click **Review & Deploy Draft** to apply the changes.
+
+## Create Atlas Functions to Analyze Sentiment
+
+Now that we have the values saved and available to reference, it’s time to write our functions that will fetch the new document and also call the Natural Language API.
+
+1. Select **Functions** from the left and click **Create New Function**.
+1. Enter the following details:
+
+- Name: **analyzeCommentSentiment**.
+- Authentication: **System**.
+- Leave the rest as default and click **Save Draft**.
+
+1. This will open the Function Editor, so replace the default code with the following:
+
+    ```js
+    exports = async function(comment) {
+        const URL = context.values.get("gcpSentimentAnalyzeURL");
+        const gcpAPIKey = context.values.get("gcpAPIKey");
+
+        const response = await context.http.post({
+            url: `${URL}?key=${gcpAPIKey}`,
+            body: {
+                "document": {
+                "type": "PLAIN_TEXT",
+                "language": "en-US",
+                "content": comment
+            }
+        },
+            encodeBodyAsJSON: true
+        });
+
+        // The response body is a BSON.Binary object. Parse it and return.
+        return JSON.parse(response.body.text());
+    };
+    ```
+
+1. Click **Save Draft** and then **Review Draft & Deploy** again to share our changes.
+
+This Function is fairly simple. It takes in a comment object, then assigns the values we saved earlier in Values as local variables. It then sends our comment to the API via a POST request, parses the response to text, and returns it.
+
+1. Click **Create New Function** from inside Functions again.
+1. Enter the following details:
+    - Name: **getCommentAndAnalyzeSentiment**.
+    - Authentication: **System**.
+    - Leave the rest as default and click **Save Draft**.
+1. In the Function Editor, replace the existing code with the following:
+
+
+    ```js
+    exports = async function (changeEvent) {
+        const commentDocument = changeEvent.fullDocument;
+        const sentiment = await context.functions.execute("analyzeCommentSentiment", commentDocument.text);
+        
+        const commentsCollection = context.services.get("mongodb-atlas").db("Bakery").collection("comments");
+        await commentsCollection.updateOne(
+            {
+            _id: commentDocument._id
+            }, {
+            $set: { sentiment }
+            }
+        );
+    };
+    ```
+
+This function gets the document from the **changeEvent** and then calls the **analyzeCommentSentiment** function, passing the comment text as an argument.
+
+We then call another MongoDB Query API function, **updateOne**, which will update our existing document with a new sentiment field with the details we get back from the NLP API.
+
+## Set up a Trigger to Run the Function on a New Comment
+
+In the last section, we set up two functions to help us call out to the Natural Language API, but now we want to create a trigger that can be called when a new comment is created, calling out to that function to request the analysis.
+
+1. Select **Triggers** from the left side.
+1. Click **Add a Trigger** and add the following before hitting **Save**:
+    - Trigger Type: **Database**
+    - Name: **getCommentAndAnalyzeSentiment**
+    - Cluster Name: **Workshop-Bakery**
+    - Database Name: **Bakery**
+    - Collection Name: **comments**
+    - Operation Type: **Insert**
+    - Full Document: **Enabled**
+    - Select An Event Type: **Function**
+    - Function: **getCommentAndAnalyzeSentiment**
+
+1. Click **Review Draft & Deploy** to deploy our changes.
+
+## Testing it all together
+
+Woo! We now have all the pieces in place, so it’s time to start seeing our hard work in action.
+
+1. Go back to your StackBlitz tab which is still running the bakery application.
+
+1. Click into one of your existing cakes and add a comment. You will see it added to the page under the **comments** section.
+
+1. Head back to Atlas and click **Browse Collections** like we learned about in the first chapter when we inserted our first documents.
+
+1. Click into our **comments** collection inside the **Bakery** database and have a look at the document for the comment you just wrote.
+    - You will see a new field called **sentiment** with the Object type.
+    - Expand this object and then expand the **documentSentiment** field (also an object), and you will see the sentiment score for your comment. Hooray! 
+ 

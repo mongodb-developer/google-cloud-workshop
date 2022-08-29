@@ -1,0 +1,71 @@
+---
+sidebar_position: 1
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Enable Cloud APIs with Cloud Shell
+
+Cloud Shell is a command-line environment running Google Cloud. We’ll be using Cloud Shell to enable Cloud APIs we need for the application deployment.
+
+:::info
+Cloud Shell is a powerful tool that will help you greatly in your Google Cloud journey. It’s a Debian-based virtual machine, preloaded with all the tools you need for Cloud development. 
+:::
+
+## Configure Cloud Shell
+
+1. Activate Cloud Shell by clicking on the **Activate Cloud Shell** icon.
+
+    <img
+        alt="Cloud Console navigation bar highlighting the 'Activate Cloud Shell' button"
+        src={useBaseUrl('/img/chapter-4-cloud-run/activate-cloud-shell.png')}
+    />
+
+
+1. Find your project ID in the [Cloud Console dashboard](https://console.cloud.google.com/home/dashboard).
+
+    <img
+        alt="New Project dialog in highlighting the Project ID text"
+        src={useBaseUrl('/img/chapter-4-cloud-run/project-id.png')}
+        width="300"
+    />
+
+1. Set your project using the `PROJECT_ID`.
+
+    ```sh
+    gcloud config set project <PROJECT_ID>
+    ```
+
+## Enable the Cloud Run and Cloud Build APIs
+
+1. From Cloud Shell, enable the Cloud Run and Cloud Build APIs
+
+    ```sh
+    gcloud services enable run.googleapis.com
+    gcloud services enable cloudbuild.googleapis.com
+    ```
+
+1. If prompted, authorize Cloud Shell to make API calls.
+
+1. You should see a success message similar to this one:
+
+    ```sh
+    Operation "operations/acf.cc11252d-30af-47ad-9d59-477a12847c9e" finished successfully.
+    ```
+
+1. To see all enabled APIs, you can run:
+
+    ```sh
+    gcloud services list
+    ```
+
+## Fetch the source code
+
+To deploy our web application, we need its source code. We will use git to fetch the [public Github repository](https://github.com/mongodb-developer/Google-Cloud-MongoDB-Atlas-Workshop).
+
+
+1. Run the following command inside the Cloud Shell:
+
+    ```sh
+    git clone https://github.com/mongodb-developer/Google-Cloud-MongoDB-Atlas-Workshop.git
+    ```

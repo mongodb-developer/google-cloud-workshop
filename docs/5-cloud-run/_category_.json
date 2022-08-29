@@ -1,0 +1,8 @@
+{
+  "label": "Google Cloud Run",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "In this section, we'll deploy the application to Google Cloud Run."
+  }
+}

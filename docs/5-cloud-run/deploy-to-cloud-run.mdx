@@ -1,0 +1,55 @@
+---
+sidebar_position: 3
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Deploy to Cloud Run
+
+We’re finally ready to deploy our application! We can do that from the Cloud Shell Editor.
+
+1. Select the **Cloud Run** extension on the left sidebar.
+
+    <img
+        alt="Left-hand menu in Cloud Shell highlighting the Cloud Run extension button"
+        src={useBaseUrl('/img/chapter-4-cloud-run/cloud-run-extension.png')}
+    />
+
+1. Click on the Deploy to Cloud Run icon.
+
+    <img
+        alt="Deploy to Cloud Run button in the Cloud Run extension"
+        src={useBaseUrl('/img/chapter-4-cloud-run/deploy-to-cloud-run.png')}
+    />
+
+1. Enter the following configuration settings for your service:
+
+    - Service Settings: **Create a service**
+    - Service name: **bakery-web-app**
+    - Deployment platform: **Cloud Run (fully managed)**
+    - Region: **closest to your physical location**
+    - Authentication: **Allow unauthenticated invocations**
+
+For the Build environment, select **Cloud Build**.
+
+Finally, in the Build Settings section, select:
+
+- Builder: **Docker**
+- Docker: **Google-Cloud-MongoDB-Atlas-Workshop/Dockerfile**
+
+1. Click on the **Deploy** button and wait as your app is being deployed to the cloud! This can take a few minutes. You can expand the process output by clicking on the **Show Detailed Logs** button.
+
+1. When the deployment is complete, you will see the URL for your application. Click on it and you will see the bakery application displaying a list of the cakes in your Atlas database.
+
+    <img
+        alt="Deployment output in Cloud Run"
+        src={useBaseUrl('/img/chapter-4-cloud-run/deployment-output.png')}
+    />
+
+    <img
+        alt="Bakery application displaying a list of cakes"
+        src={useBaseUrl('/img/chapter-4-cloud-run/cakes-application.png')}
+    />
+
+Great job! You just deployed a web application to the cloud!
+

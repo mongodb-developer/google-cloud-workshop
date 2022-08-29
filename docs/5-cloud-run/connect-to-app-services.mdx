@@ -1,0 +1,31 @@
+---
+sidebar_position: 2
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Connect to App Services
+
+Let’s connect our web application to Atlas App Services.
+
+1. First, open [Cloud Shell Editor](https://console.cloud.google.com/cloudshelleditor). The editor may look suspiciously like VSCode. This is because both projects use some of the same open-sourced components such as the Monaco Editor and the Language Server Protocol. You should see your cloned project on the left.
+
+    <img
+        alt="Cloud Shell Editor highlighting the project directory on the left hand-side"
+        src={useBaseUrl('/img/chapter-4-cloud-run/cloud-shell-editor-app-highlighted.png')}
+    />
+
+1. Open the **environment.prod.ts** file. You should see the following content.
+
+    ```js title=Google-Cloud-MongoDB-Atlas-Workshop/src/environments/environment.prod.ts
+    export const environment = {
+    production: true,
+    APP_ID: '',
+    GRAPHQL_URI: '',
+    API_KEY: ''
+    };
+    ```
+
+    > Please note that we're editing *environment.**prod**.ts* file and not the *environment.ts* file. The former is picked by Angular when building the application for production.
+
+1. Let's add our own credentials to this file. You can either copy them from your open StackBlitz application or follow the instructions from [Chapter 2](/docs/app-services/app-graphql#app-services-authentication-credentials) to get them from App Services. 

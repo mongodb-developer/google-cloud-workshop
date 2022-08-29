@@ -1,0 +1,33 @@
+---
+sidebar_position: 1
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Set up Google Cloud
+
+In this section, we'll be using the Google Cloud Natural Language API to analyze the sentiment of the comments left on the cakes in the web app. That's why we need to set up a Google Cloud account and project.
+
+1. Sign in to [Cloud Console](https://console.cloud.google.com/getting-started) and create a new project.
+
+    <img
+        alt="Select project dropdown in Google Cloud"
+        src={useBaseUrl('/img/chapter-3-nlp/select-project.png')}
+        width="500"
+    />
+
+    <img
+        alt="Dialog box in Google Cloud highlighting the 'New Project' button"
+        src={useBaseUrl('/img/chapter-3-nlp/new-project.png')}
+        width="500"
+    />
+
+1. Remember your project ID. We will refer to it throughout the workshop as `PROJECT_ID`.
+
+    <img
+        alt="New Project dialog in highlighting the Project ID text"
+        src={useBaseUrl('/img/chapter-3-nlp/project-id.png')}
+        width="300"
+    />
+
+1. [Enable billing](https://console.cloud.google.com/billing) to use Google Cloud resources. If you’re a new user, you’re eligible for the [$300 Free Trial](https://cloud.google.com/free) program.

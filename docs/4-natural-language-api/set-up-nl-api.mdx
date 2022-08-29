@@ -1,0 +1,31 @@
+---
+sidebar_position: 2
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Enable the Google Cloud Natural Language API
+
+It’s now time to start bringing in another Google Cloud product, Natural Language API, that will allow us to fetch the sentiment of the comments left on the cakes in the web app.
+
+1. The first thing we want to do is to enable the **Natural Language API**. Search for Natural Language API and select it from the list under **Marketplace**.
+
+    <img
+        alt="Select project dropdown in Google Cloud"
+        src={useBaseUrl('/img/chapter-3-nlp/natural-language-api-marketplace.png')}
+        width="500"
+    />
+
+1. Click the **Enable** button so we can start using it within our project.
+
+1. This will take you to the Natural Language API page for your project. We will need to generate an API key to use, so select **Credentials** from the left-hand menu.
+
+    <img
+        alt="Select project dropdown in Google Cloud"
+        src={useBaseUrl('/img/chapter-3-nlp/nl-credentials.png')}
+    />
+
+1. Click **Create Credentials** at the top of the browser window and select API Key from the dropdown box to generate a key.
+
+1. Copy the API key that has been generated for you. We'll use it to authenticate our requests to the Natural Language API in the following section.
+

@@ -1,0 +1,8 @@
+{
+  "label": "Atlas App Services",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "In this chapter, we will create our first Atlas App Services application, set some rules for accessing our collections from Chapter 1, and then configure a schema for our data, allowing us to enable GraphQL."
+  }
+}

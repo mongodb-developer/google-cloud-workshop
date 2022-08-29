@@ -1,0 +1,131 @@
+---
+sidebar_position: 2
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Consume the API in a Web App
+
+Data services are only practical if you use them in an actual application. Let’s do that! In this section, we’ll connect an Angular web application to the App Services GraphQL API we created. 
+
+## Run the application in StackBlitz
+
+We'll use StackBlitz, an online IDE, to run the application.
+
+1. Open the [StackBlitz project](https://stackblitz.com/edit/mongodb-atlas-bakery?file=src/environments/environment.ts)
+
+1. Wait until the message `Compiling application & starting dev server…` is gone. 
+
+    <img
+        alt="StackBlitz editor highlighting the 'Compiling application & starting dev server…' message"
+        src={useBaseUrl('/img/chapter-2-app-services/stackblitz-loading.png')}
+        width="400"
+    />
+
+1. Fork the project so you can make changes to it.
+
+    <img
+        alt="StackBlitz editor highlighting the 'Fork' button"
+        src={useBaseUrl('/img/chapter-2-app-services/stackblitz-fork.png')}
+        width="700"
+    />
+
+In the code editor, you can see the open `environment.ts` file:
+
+```ts
+export const environment = {
+ production: true,
+ APP_ID: '',
+ GRAPHQL_URI: '',
+ API_KEY: ''
+};
+```
+
+We will add our own credentials to this file. Let’s get them from Atlas App Services.
+
+## App Services authentication credentials
+
+1. Open [MongoDB Atlas](https://cloud.mongodb.com) in a new tab in your browser and navigate to the App Services tab.
+
+    <img
+        alt="Atlas navigation bar highlighting the 'App Services' tab"
+        src={useBaseUrl('/img/chapter-2-app-services/app-services-tab.png')}
+    />
+
+1. Select the application you created in the previous section.
+
+    <img
+        alt="App services applications highlighting the 'Bakery' app"
+        src={useBaseUrl('/img/chapter-2-app-services/app-services-apps.png')}
+    />
+
+1. Copy your **App ID** and add it to the environment file.
+
+    <img
+        alt="App services page highlighting the 'App ID' copy button"
+        src={useBaseUrl('/img/chapter-2-app-services/bakery-app-id.png')}
+    />
+
+1. Navigate to the GraphQL section, copy the **GraphQL endpoint**, and add it to the environment file.
+
+    <img
+        alt="App Services left-hand menu highlighting the 'GraphQL' section"
+        src={useBaseUrl('/img/chapter-2-app-services/graphql-tab.png')}
+        width="200"
+    />
+
+    <img
+        alt="GraphQL page in App Services highlighting the 'Copy' button next to the GraphQL endpoint"
+        src={useBaseUrl('/img/chapter-2-app-services/graphql-endpoint.png')}
+    />
+
+1. To generate an API key, navigate to the **Authentication** section.
+
+    <img
+        alt="App Services left-hand menu highlighting the 'Authentication' section"
+        src={useBaseUrl('/img/chapter-2-app-services/authentication-tab.png')}
+        width="200"
+    />
+
+1. There are a set of providers available for App Services. For this application, we’ll use the **API Keys** provider. Select it from the list, and switch it on. Before generating the key, make sure to deploy the draft.
+
+    <img
+        alt="Authentication providers list highlighting the 'Edit' button on the 'API Keys' line"
+        src={useBaseUrl('/img/chapter-2-app-services/auth-providers.png')}
+        width="500"
+    />
+
+    <img
+        alt="Authentication section with the 'On' toggle button highlighted"
+        src={useBaseUrl('/img/chapter-2-app-services/api-keys-provider.png')}
+        width="500"
+    />
+
+    <img
+        alt="Review draft and deploy button"
+        src={useBaseUrl('/img/chapter-2-app-services/review-draft-and-deploy.png')}
+        width="500"
+    />
+
+1. Generate a key, copy the value, and—you guessed it—add it to the environment file. 
+
+1. Finally, your environment file should look something like this:
+
+    ```ts
+    export const environment = {
+    production: false,
+    APP_ID: 'bakery-lvtjx',
+    GRAPHQL_URI: 'https://realm.mongodb.com/api/client/v2.0/app/bakery-lvtjx/graphql',
+    API_KEY: 'RaOyilaiveCXYkNq30iHKq8LDj6kg71FvviTWJauTU5S9Il5zF0ONeDvWkNzrPQ4'
+    };
+    ```
+
+1. Save the file and you should see a list with the cakes in your database on the right.
+
+    <img
+        alt="StackBlitz with the editor on the left and the application on the right"
+        src={useBaseUrl('/img/chapter-2-app-services/stackblitz-application.png')}
+        width="500"
+    />
+
+The application uses the Atlas GraphQL API to access data from your Atlas database. Explore it by clicking on one of the cakes to open its details page. Add your comment about the cake. In the following section, we'll use the Google Cloud Natural Language API to analyze the sentiment of new comments. Make sure you keep the StackBlitz tab open in your browser!

@@ -1,0 +1,8 @@
+{
+  "label": "Google Cloud Natural Language API",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "In this section, we'll analyze the sentiment of the comments left by users on the web app."
+  }
+}
