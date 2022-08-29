@@ -29,6 +29,7 @@ We will be using the Atlas UI for this section. However, all this can also be do
     <img
         alt="'Create Database' dialog with 'Bakery' filled in as a database name and 'cakes' filled in as a collection name" 
         src={useBaseUrl('/img/chapter-1-mongodb-atlas/create-database-and-collection.png')}
+        width="300"
     />
 
 1. We now have our **cakes** collection created inside our new bakery database—woo! But we want to add some data. The Atlas UI makes this really easy. Click the **Insert Document** button in the top right corner.
@@ -43,6 +44,7 @@ We will be using the Atlas UI for this section. However, all this can also be do
     <img
         alt="'Insert to Collection' dialog highlighting the JSON button"
         src={useBaseUrl('/img/chapter-1-mongodb-atlas/switch-to-json-view.png')}
+        width="500"
     />
 
 1. Delete what is currently in the box, add the following cake document, and then press **Insert**:
@@ -84,6 +86,7 @@ We will be using the Atlas UI for this section. However, all this can also be do
     <img
         alt="Cake document with the _id value selected" 
         src={useBaseUrl('/img/chapter-1-mongodb-atlas/cake-document-object-id.png')}
+        width="800"
     />
 
 1. To store the comments, we want to add a second collection to our **Bakery** database, to store the comments that people can leave on each cake. Hover your mouse over **Bakery** in the left panel and there will be a **+** sign to add a new collection. Click this and add a new collection called **comments**.
@@ -91,6 +94,7 @@ We will be using the Atlas UI for this section. However, all this can also be do
     <img
         alt="Databases section with the '+' sign to add a new collection highlighted"
         src={useBaseUrl('/img/chapter-1-mongodb-atlas/add-new-collection-existing-database.png')}
+        width="300"
     />
 
 1. Add a new document to this new **comments** collection, using the following template, substituting the **_id** for the one you copied in Step 8, your name, and a comment.
