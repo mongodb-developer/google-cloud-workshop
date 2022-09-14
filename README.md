@@ -37,3 +37,7 @@ Not using SSH:
 ```
 $ GIT_USER=<Your GitHub username> yarn deploy
 ```
+
+### Disclaimer
+
+Use at your own risk; not a supported MongoDB product
