@@ -9,7 +9,7 @@ const config = {
   title: 'MongoDB Atlas and Google Cloud Workshop',
   tagline: 'Learn about Atlas App Services, GraphQL, Google Cloud Natural Language API, Google Cloud Run, and more',
   url: 'https://mongodb-developer.github.io/',
-  baseUrl: '/Atlas-on-Google-Cloud-Workshop/',
+  baseUrl: '/',
   projectName: 'mongodb-developer.github.io',
   organizationName: 'mongodb-developer',
   trailingSlash: false,
