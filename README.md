@@ -1,6 +1,6 @@
 # MongoDB Atlas on Google Cloud Workshop Content
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator. It's available on (http://www.atlas-google-cloud-workshop.com/).
+This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator. It's available on http://www.atlas-google-cloud-workshop.com/.
 
 ### Installation
 
