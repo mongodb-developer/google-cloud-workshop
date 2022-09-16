@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'MongoDB Atlas and Google Cloud Workshop',
+  title: 'MongoDB Atlas on Google Cloud Workshop',
   tagline: 'Learn about Atlas App Services, GraphQL, Google Cloud Natural Language API, Google Cloud Run, and more',
   url: 'https://mongodb-developer.github.io/',
   baseUrl: '/',
@@ -17,17 +17,10 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   deploymentBranch: 'gh-pages',
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-
-  // Even if you don't use internalization, you can use this field to set useful
-  // metadata like html lang. For example, if your site is Chinese, you may want
-  // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
   },
-
   presets: [
     [
       'classic',
@@ -35,7 +28,7 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl:'https://github.com/mongodb-developer/mongodb-developer.github.io',
+          editUrl: 'https://github.com/mongodb-developer/google-cloud-workshop',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -54,18 +47,13 @@ const config = {
         }
       },
       navbar: {
-        title: 'MongoDB',
         logo: {
           alt: 'MongoDB Logo',
-          src: 'img/logomark.png',
+          src: 'img/logo.svg',
+          srcDark: 'img/logo-dark.svg',
+          className: 'navbar-logo',
         },
         items: [
-          {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Atlas and Google Cloud Tutorial',
-          },
           {
             href: 'https://github.com/mongodb-developer/mongodb-developer.github.io',
             label: 'GitHub',
@@ -76,15 +64,6 @@ const config = {
       footer: {
         style: 'dark',
         links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
-          },
           {
             title: 'Community',
             items: [
