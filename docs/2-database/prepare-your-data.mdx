@@ -29,7 +29,7 @@ We will be using the Atlas UI for this section. However, all this can also be do
     <img
         alt="'Create Database' dialog with 'Bakery' filled in as a database name and 'cakes' filled in as a collection name" 
         src={useBaseUrl('/img/chapter-1-mongodb-atlas/create-database-and-collection.png')}
-        width="300"
+        width="400"
     />
 
 1. We now have our **cakes** collection created inside our new bakery database—woo! But we want to add some data. The Atlas UI makes this really easy. Click the **Insert Document** button in the top right corner.
@@ -86,10 +86,9 @@ We will be using the Atlas UI for this section. However, all this can also be do
     <img
         alt="Cake document with the _id value selected" 
         src={useBaseUrl('/img/chapter-1-mongodb-atlas/cake-document-object-id.png')}
-        width="800"
     />
 
-1. To store the comments, we want to add a second collection to our **Bakery** database, to store the comments that people can leave on each cake. Hover your mouse over **Bakery** in the left panel and there will be a **+** sign to add a new collection. Click this and add a new collection called **comments**.
+1. Next, we'll add a second collection to our **Bakery** database, to store the comments that people can leave on each cake. Hover your mouse over **Bakery** in the left panel and there will be a **+** sign to add a new collection. Click this and add a new collection called **comments**.
 
     <img
         alt="Databases section with the '+' sign to add a new collection highlighted"
@@ -97,16 +96,22 @@ We will be using the Atlas UI for this section. However, all this can also be do
         width="300"
     />
 
-1. Add a new document to this new **comments** collection, using the following template, substituting the **_id** for the one you copied in Step 8, your name, and a comment.
+1. Add a new document to this new **comments** collection, using the following template, substituting your name, comment, a date of your choice, and the **cakeId** for the one you copied in Step 8. Make sure your using the type `Date` for the `date` field and the type `ObjectId` for the `cakeId` field.
 
     ```json
     {
-        "cakeId": "<ID of Cake Document>",
-        "date": "...",
-        "name": "<NAME>",
-        "text": "<COMMENT>"
+        "name": "Your name",
+        "comment": "Your comment",
+        "date": "2021-01-01T00:00:00.000Z",
+        "cakeId": "5f9f5b9b9b9b9b9b9b9b9b9b"
     }
     ```
+
+    <img
+        alt="Databases section with the '+' sign to add a new collection highlighted"
+        src={useBaseUrl('/img/chapter-1-mongodb-atlas/insert-comment.gif')}
+    />
+
 
 Woo! You now have your Atlas database set up with some cake data, and even a comment associated with the cake!
 

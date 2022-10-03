@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'MongoDB Atlas on Google Cloud Workshop',
   tagline: 'Learn about Atlas App Services, GraphQL, Google Cloud Natural Language API, Google Cloud Run, and more',
-  url: 'https://mongodb-developer.github.io/',
+  url: 'https://www.atlas-google-cloud-workshop.com/',
   baseUrl: '/',
   projectName: 'mongodb-developer.github.io',
   organizationName: 'mongodb-developer',
