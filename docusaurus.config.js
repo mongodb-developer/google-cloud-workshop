@@ -28,7 +28,7 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/mongodb-developer/google-cloud-workshop',
+          editUrl: 'https://github.com/mongodb-developer/google-cloud-workshop/blob/main',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
