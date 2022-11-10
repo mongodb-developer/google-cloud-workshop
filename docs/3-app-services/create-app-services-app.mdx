@@ -66,7 +66,7 @@ GraphQL requires us to have a schema defined for building up queries, so in this
         width="400"
     />
 
-1. Paste the following JSON schema into the box.
+1. Paste the following JSON schema into the box and click **Save Draft** to persist the change.
 
     ```json
     {
@@ -91,13 +91,20 @@ GraphQL requires us to have a schema defined for building up queries, so in this
     }
     ```
 
-1. We now need to define a relationship between our two collections so that the comment document understands cakeId. So, click **Add a relationship** and set it to the following before clicking **Add**:
+1. We now need to define a relationship between our two collections so that the comment document understands `cakeId`. Click **Add a relationship** and set it to the following before clicking **Add**:
     - Parent Field: **cakeId - objectId**
     - Linked Database: **Bakery**
     - Linked Collection: **cakes**
     - Linked Field: **_id - objectId**
 
-1. Click **Save Draft** to persist the schemas you just created. Then, click **Review Draft & Deploy** at the top of the browser window, to deploy both our new schemas for our application.
+:::caution
+If you see the following error while adding a relationship, you might have forgotten to save your schema draft:
+> You must define a schema with a valid properties object for this collection before adding a relationship.
+
+Locate the **Save Draft** button in the top right corner of the screen and click it to persist your schema.
+:::
+
+1. Click **Save Draft** to persist the relationship you just created. Then, click **Review Draft & Deploy** at the top of the browser window, to deploy both our new schemas for our application.
 
 1. Click **Deploy** in the modal that pops up.
 
