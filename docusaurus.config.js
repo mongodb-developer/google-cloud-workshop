@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'MongoDB Atlas on Google Cloud Workshop',
-  tagline: 'Learn about Atlas App Services, GraphQL, Google Cloud Natural Language API, Google Cloud Run, and more',
+  tagline: 'Learn how to use MongoDB Atlas, GraphQL, Google Cloud Natural Language API, Google Cloud Run, and more',
   url: 'https://www.atlas-google-cloud-workshop.com/',
   baseUrl: '/',
   projectName: 'mongodb-developer.github.io',
@@ -56,6 +56,8 @@ const config = {
           src: 'img/logo.svg',
           srcDark: 'img/logo-dark.svg',
           className: 'navbar-logo',
+          width: '135px',
+          height: '100%'
         },
         items: [
           {
@@ -69,20 +71,24 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Community',
+            title: 'Learn more',
             items: [
               {
+                label: 'Try Atlas',
+                href: 'https://www.mongodb.com/try?utm_campaign=devrel&utm_source=workshop&utm_medium=cta&utm_content=google_cloud_workshop&utm_term=stanimira.vlaeva',
+              },
+              {
                 label: 'Forums',
-                href: 'https://www.mongodb.com/community/forums/',
+                href: 'https://www.mongodb.com/community/forums/?utm_campaign=devrel&utm_source=workshop&utm_medium=cta&utm_content=google_cloud_workshop&utm_term=stanimira.vlaeva',
               },
               {
                 label: 'Developer Center',
-                href: 'https://www.mongodb.com/developer/',
+                href: 'https://www.mongodb.com/developer/?utm_campaign=devrel&utm_source=workshop&utm_medium=cta&utm_content=google_cloud_workshop&utm_term=stanimira.vlaeva',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} MongoDB Inc. Built with Docusaurus.`,
+        copyright: `© ${new Date().getFullYear()} MongoDB, Inc.`,
       },
       prism: {
         theme: lightCodeTheme,

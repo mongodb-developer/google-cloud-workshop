@@ -4,17 +4,17 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Multi-Cloud, Multi-Region Database Service',
-    illustration: 'img/database.png',
+    title: 'Globally-distributed cloud database',
+    illustration: 'img/database.svg',
     description: (
       <>
-        Deploy your applications to multiple cloud platforms across multiple regions, including Google Cloud. 
+        Deploy a multi-cloud database in over 90 regions across the three major cloud providers.
       </>
     ),
   },
   {
-    title: 'Fully-Integrated Developer Data Platform',
-    illustration: 'img/app-services.png',
+    title: 'Fully-integrated developer data platform',
+    illustration: 'img/developer-data-platform.svg',
     description: (
       <>
         Build and run production-ready apps on top of Atlas in a fraction of the time with fully managed cloud services such as Functions, Triggers, and APIs.
@@ -22,21 +22,29 @@ const FeatureList = [
     ),
   },
   {
-    title: 'AI/ML Capabilities',
-    illustration: 'img/analytics.png',
+    title: 'AI/ML capabilities',
+    illustration: 'img/ai-ml.svg',
     description: (
       <>
-        Leverage the Google Cloud Natural Language API to analyze text and extract business insights.
+        Leverage Google Cloud Natural Language API to extract sentiment from text and extract business insights.
       </>
     ),
   },
 ];
 
-function Feature({illustration, title, description}) {
+function Feature({illustration, title, description, fetchPriority}) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <img src={illustration} className={styles.featureImg} role="img" />
+        <img
+          src={illustration}
+          className={styles.featureImg}
+          width="450px"
+          height="100%"
+          role="img"
+          alt=""
+          fetchpriority={fetchPriority}
+        />
       </div>
       <div className="text--center padding-horiz--md">
         <h3>{title}</h3>
@@ -52,7 +60,7 @@ export default function HomepageFeatures() {
       <div className="container">
         <div className="row">
           {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+            <Feature key={idx} fetchPriority={idx ? 'low' : 'high'} {...props} />
           ))}
         </div>
       </div>
