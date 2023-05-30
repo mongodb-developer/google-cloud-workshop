@@ -6,20 +6,30 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Deploy to Cloud Run
 
-We’re finally ready to deploy our application! We can do that from the Cloud Shell Editor.
+Yo’re finally ready to deploy the application! You can do this from the Cloud Shell Editor.
 
-1. Select the **Cloud Run** extension on the left sidebar.
+1. Select the **Cloud Code** extension on the left sidebar.
 
     <img
-        alt="Left-hand menu in Cloud Shell highlighting the Cloud Run extension button"
-        src={useBaseUrl('/img/chapter-4-cloud-run/cloud-run-extension.png')}
+        alt="Left-hand menu in Cloud Shell highlighting the Cloud Code extension button"
+        src={useBaseUrl('/img/chapter-4-cloud-run/cloud-code-extension.png')}
+        width="300"
     />
 
-1. Click on the Deploy to Cloud Run icon.
+1. Expand the **Cloud Run** section.
+
+    <img
+        alt="Cloud Code extention expanded with the Cloud Run section highlighted"
+        src={useBaseUrl('/img/chapter-4-cloud-run/cloud-run-section.png')}
+        width="300"
+    />
+
+1. Click the Deploy to Cloud Run icon.
 
     <img
         alt="Deploy to Cloud Run button in the Cloud Run extension"
         src={useBaseUrl('/img/chapter-4-cloud-run/deploy-to-cloud-run.png')}
+        width="500"
     />
 
 1. Enter the following configuration settings for your service:
@@ -30,16 +40,16 @@ We’re finally ready to deploy our application! We can do that from the Cloud S
     - Region: **closest to your physical location**
     - Authentication: **Allow unauthenticated invocations**
 
-For the Build environment, select **Cloud Build**.
+    For the Build environment, select **Local Build**.
 
-Finally, in the Build Settings section, select:
+    Finally, in the Build Settings section, select:
 
-- Builder: **Docker**
-- Docker: **Google-Cloud-MongoDB-Atlas-Workshop/Dockerfile**
+    - Builder: **Docker**
+    - Docker: **Google-Cloud-MongoDB-Atlas-Workshop/Dockerfile**
 
-1. Click on the **Deploy** button and wait as your app is being deployed to the cloud! This can take a few minutes. You can expand the process output by clicking on the **Show Detailed Logs** button.
+1. Click the **Deploy** button and wait as your app is being deployed to the cloud! This can take a few minutes. You can expand the process output by clicking on the **Show Detailed Logs** button.
 
-1. When the deployment is complete, you will see the URL for your application. Click on it and you will see the bakery application displaying a list of the cakes in your Atlas database.
+1. When the deployment is complete, you will see the URL for your application. Click it and you will see the bakery application displaying a list of the cakes in your Atlas database.
 
     <img
         alt="Deployment output in Cloud Run"
@@ -51,5 +61,4 @@ Finally, in the Build Settings section, select:
         src={useBaseUrl('/img/chapter-4-cloud-run/cakes-application.png')}
     />
 
-Great job! You just deployed a web application to the cloud!
-
+Great job! You have just deployed a web application to a serverless cloud service!

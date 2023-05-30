@@ -6,11 +6,11 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Consume the API in a Web App
 
-Data services are only practical if you use them in an actual application. Let’s do that! In this section, we’ll connect an Angular web application to the App Services GraphQL API we created. 
+Data services are only practical if you use them in an actual application. Let’s do that! In this section, you will connect an Angular web application to the App Services GraphQL API you just created. 
 
 ## Run the application in StackBlitz
 
-We'll use StackBlitz, an online IDE, to run the application.
+You will use StackBlitz, an online IDE, to run the application.
 
 1. Open the [StackBlitz project](https://stackblitz.com/edit/mongodb-atlas-bakery?file=src/environments/environment.ts).
 
@@ -41,7 +41,7 @@ export const environment = {
 };
 ```
 
-We will add our own credentials to this file. Let’s get them from Atlas App Services.
+You will add our own credentials to this file. Let’s get them from Atlas App Services.
 
 ## App Services authentication credentials
 
@@ -87,7 +87,7 @@ We will add our own credentials to this file. Let’s get them from Atlas App Se
         width="200"
     />
 
-1. There are a set of providers available for App Services. For this application, we’ll use the **API Keys** provider. Select it from the list, and switch it on. Before generating the key, make sure to deploy the draft.
+1. There are a set of providers available for App Services. For this application, you will use the **API Keys** provider. Select it from the list, and switch it on. Before generating the key, make sure to deploy the draft.
 
     <img
         alt="Authentication providers list highlighting the 'Edit' button on the 'API Keys' line"
@@ -128,4 +128,6 @@ We will add our own credentials to this file. Let’s get them from Atlas App Se
         width="500"
     />
 
-The application uses the Atlas GraphQL API to access data from your Atlas database. Explore it by clicking on one of the cakes to open its details page. Add your comment about the cake. In the following section, we'll use the Google Cloud Natural Language API to analyze the sentiment of new comments. Make sure you keep the StackBlitz tab open in your browser!
+The application uses the Atlas GraphQL API to access data from your Atlas database. Explore it by clicking on one of the cakes to open its details page. Add your comment about a cake recipe.
+
+In the following section, you will use the Google Cloud Natural Language API to analyze the sentiment of new comments. Make sure you keep the StackBlitz tab open in your browser!

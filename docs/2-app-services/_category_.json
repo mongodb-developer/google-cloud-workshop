@@ -3,6 +3,6 @@
   "position": 3,
   "link": {
     "type": "generated-index",
-    "description": "In this chapter, we will create our first Atlas App Services application, set some rules for accessing our collections, and then configure a schema for our data, allowing us to enable access through the pre-built App Services GraphQL API."
+    "description": "In this chapter, you will create an Atlas App Services serverless backend, connect it to the database cluster and set data access rules. Finally, you'll configure a schema for the data, thus enabling the pre-built App Services GraphQL API."
   }
 }

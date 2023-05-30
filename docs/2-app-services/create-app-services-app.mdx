@@ -6,27 +6,28 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Create an Atlas GraphQL API
 
-In this section, we are going to get set up with our first Atlas App Services application, ready for using GraphQL.
+In this section, you are going to set up with your first Atlas App Services backend, ready for using GraphQL.
 
-## Create an Atlas App Services application
+## Get started with Atlas App Services
 
 1. Start by navigating to the **App Services** tab.
 
     <img
         alt="Atlas navigation bar highlighting the 'App Services' tab"
         src={useBaseUrl('/img/chapter-2-app-services/app-services-tab.png')}
+        width="500"
     />
 
-1. You’ll be prompted to select a starter template. Let’s go with the **Build your own App** option that’s already selected. Click the **Next** button. 
-1. Next, you need to configure your application.
-    - **Data Source**: Since we have created a single cluster, Atlas already linked it to our application.
-    - **Application Name**: Let’s give our application a meaningful name such as **Bakery**.
-    - **App Deployment Model**: Change the deployment to **Single Region** and select the region closest to your physical location.
-1. Click the **Create App Service** button to create your first App Services application!
+1. You will be prompted to select a starter template. Select the **Build your own App** and click the **Next** button. 
 
-## Configure rules
+1. The platform should automatically create your first application for you. If you have pre-existing applications in your project, you might be prompted to fill in additional configuration settings for your app. If you see the extra configuration prompt, fill in the following:
+    - **Data Source**: Since you have just one cluster, Atlas has already linked it to the application.
+    - **Application Name**: Give the application a meaningful name such as **Bakery**.
+    - **App Deployment Model**: Make sure the deployment is set to **Single Region** and select the region closest to your physical location.
 
-We want to add some rules to control our app’s access to our data.
+## Configure data access rules
+
+Next, you will set up rules to control the app’s access to data.
 
 1. At the end of the previous section, after creating your application, it will have taken you to it in your browser. On the left, under the **Data Access** heading, select **Rules**.
 
@@ -36,29 +37,41 @@ We want to add some rules to control our app’s access to our data.
         width="200"
     />
 
-1. We will need to make two rules—one for each of our collections.
+1. You will see a helper popup, explaining how **Roles** and **Filters** in App Services work. Read through it and close it. 
+
+   <img
+        alt="Helper popup explaining roles and filters in App Services with the close button highlighted"
+        src={useBaseUrl('/img/chapter-2-app-services/roles-and-filters.png')}
+        width="500"
+    />
+
+1. You need to create two rules — one for each collections.
     - Select the **cakes** collection, select the **readAll** preset, and then click **Add preset role**.
-    - A popup will appear talking about **Save and Deploy**. You can just click through this and leave it as it is.
+    - A popup will appear talking about **Save and Deploy**. Read it and close it.
 
-1. Select the **comments** collection from the left, and this time, apply the **readAndWriteAll** rule.
+1. Select the **comments** collection from the left, and this time, apply the **readAndWriteAll** rule. Click **Add preset role**.
 
-1. Since we have made changes to the app by adding these rules, we need to deploy those changes. This **Review Draft & Deploy** step is on by default, to protect us from making changes unintentionally.
+1. Since you have made changes to the app by adding these rules, you need to deploy those changes. This **Review Draft & Deploy** step is on by default, to protect you from making changes unintentionally.
     - Click the **Review Draft & Deploy** button in the blue banner across the top of your screen.
-    - This will show the rules we have applied, as the system has added them into a new `rules.json` file. Simply scroll down to the bottom of the window and click **Deploy**.
+    - This will show the rules you have created, as the system has added them into a new `rules.json` file. Scroll down to the bottom of the window and click **Deploy**.
 
 ## Generate a schema
 
-GraphQL requires us to have a schema defined for building up queries, so in this section, we will generate a schema for both our cakes and comments collections.
+GraphQL requires a strongly-typed schema. In this section, you will generate a schema for both the cakes and comments collections.
 
 1. Click **Schema** on the left, just below where you clicked **Rules** in Step 1 of the last section.
 
-1. Select the **cakes** collection. App Services will see that you already have data that it can generate a schema from, so go ahead and click **Generate a Schema**.
+1. Select the **cakes** collection. and click **Define a Schema**.
 
-1. Leave the default sample size and click **Generate schema from sampling**.
+1. App Services will see that you already have data that it can generate a schema from, so go ahead and click **Generate schema from sampling**.
 
 1. A JSON schema will be generated, matching the field names to their data types. At the top of the browser window, click **Save Draft** to save this new schema.
 
-1. We now want to create a schema for our **comments** collection. This time, we’ll write the schema instead of generating it. Click **Generate a Schema** and then select **or, skip and manually define your schema** at the bottom of the window.
+1. Scroll up to the blue banner at the top and click **Review Draft and Deploy**. Scroll through the changes and click **Deploy**.
+
+1. Now, you will create a schema for the **comments** collection. Select **comments** from the panel on the left and then, click **Define a Schema**.
+
+1. This time, you’ll write the schema instead of generating it. Click **or, skip and manually define your own schema**.
 
     <img
         alt="Generate a Schema window with the 'or, skip and manually define your schema' option highlighted"
@@ -66,7 +79,7 @@ GraphQL requires us to have a schema defined for building up queries, so in this
         width="400"
     />
 
-1. Paste the following JSON schema into the box and click **Save Draft** to persist the change.
+1. Delete the pre-filled content and paste the following JSON schema into the box. 
 
     ```json
     {
@@ -78,20 +91,22 @@ GraphQL requires us to have a schema defined for building up queries, so in this
             "cakeId": {
                 "bsonType": "objectId"
             },
-            "date": {
-                "bsonType": "date"
-            },
             "name": {
                 "bsonType": "string"
             },
             "text": {
                 "bsonType": "string"
+            },
+            "date": {
+                "bsonType": "date"
             }
         }
     }
     ```
 
-1. We now need to define a relationship between our two collections so that the comment document understands `cakeId`. Click **Add a relationship** and set it to the following before clicking **Add**:
+1. Click **Save Draft** to persist the change. Scroll up to the blue banner again and deploy the changes.
+
+1. You now need to define a relationship between the two collections so that the comment document understands `cakeId`. Click **Add a relationship** and set it to the following before clicking **Add**:
     - Parent Field: **cakeId - objectId**
     - Linked Database: **Bakery**
     - Linked Collection: **cakes**
@@ -104,13 +119,11 @@ If you see the following error while adding a relationship, you might have forgo
 Locate the **Save Draft** button in the top right corner of the screen and click it to persist your schema.
 :::
 
-1. Click **Save Draft** to persist the relationship you just created. Then, click **Review Draft & Deploy** at the top of the browser window, to deploy both our new schemas for our application.
-
-1. Click **Deploy** in the modal that pops up.
+1. Click **Save Draft** to persist the relationship you just created. Then, click **Review Draft & Deploy** and deploy the change.
 
 ## Query data with GraphQL
 
-Now that we have the schemas in place, it’s time to run our first query to check it all works!
+Now that you have the schemas in place, it’s time to run your first query to check it all works!
 
 1. Click **GraphQL** from the left side menu, under the **Build** heading.
 
@@ -120,7 +133,11 @@ Now that we have the schemas in place, it’s time to run our first query to che
         width="300"
     />
 
-1. Replace the comments and sample query inside the playground with the following query, which requests the name and description from our cakes collection:
+    :::info
+    You see the Graph**i**QL editor (note the **i** after **Graph**). GraphiQL is an integrated development environment (IDE) for exploring GraphQL APIs.
+    :::
+
+1. Replace the comments and sample query inside the editor with the following query, which requests the name and description from the cakes collection:
 
     ```graphql
     query {
@@ -131,9 +148,32 @@ Now that we have the schemas in place, it’s time to run our first query to che
     }
     ```
 
-1. Click the play button at the top to run your query, and see your cakes document returned on the right.  
+1. Click the execute button at the top to run your query, and see your cakes document returned on the right.  
 
     <img
         alt="GraphQL request with the cakes query (on the left) and the returned result (on the right)"
         src={useBaseUrl('/img/chapter-2-app-services/graphiql.png')}
+    />
+
+1. Let's try a query that looks for all comments associated with a specific `cakeId`. Replace the query with the following and click the execute button again.
+
+    ```graphql
+    query {
+        comments(query: {
+            cakeId: {
+                _id: "64759d513beb40594cb859e9"
+            }
+        }) {
+            name
+            text
+            cakeId {
+                name
+            }
+        }
+    }
+    ```
+
+    <img
+        alt="GraphQL request with the comments query (on the left) and the returned result (on the right)"
+        src={useBaseUrl('/img/chapter-2-app-services/comments-query.png')}
     />

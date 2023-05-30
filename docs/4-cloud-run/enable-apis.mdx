@@ -8,11 +8,10 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 :::tip
 This section requires a Google Cloud account. You can create one and get $300 in free credits [here](https://cloud.google.com/free).
-Alternatively, you can use this Google Cloud Skills Boost lab — [MongoDB Atlas with Natural Language API and Cloud Run](https://mdb.link/gc-lab-2). When you start the lab, you'll get access to a temporary Google Cloud account that you can use for the duration of the lab.
+Alternatively, you can use this Google Cloud Skills Boost lab — [MongoDB Atlas with Natural Language API and Cloud Run](https://mdb.link/gc-lab-2). When you start the lab, you will get access to a temporary Google Cloud account that you can use for the duration of the lab.
 :::
 
-
-Cloud Shell is a command-line environment running Google Cloud. We’ll be using Cloud Shell to enable Cloud APIs we need for the application deployment.
+Cloud Shell is a command-line environment running Google Cloud. You will be using Cloud Shell to enable Cloud APIs you need for the application deployment.
 
 :::info
 Cloud Shell is a powerful tool that will help you greatly in your Google Cloud journey. It’s a Debian-based virtual machine, preloaded with all the tools you need for Cloud development. 
@@ -26,7 +25,6 @@ Cloud Shell is a powerful tool that will help you greatly in your Google Cloud j
         alt="Cloud Console navigation bar highlighting the 'Activate Cloud Shell' button"
         src={useBaseUrl('/img/chapter-4-cloud-run/activate-cloud-shell.png')}
     />
-
 
 1. Find your project ID in the [Cloud Console dashboard](https://console.cloud.google.com/home/dashboard).
 
@@ -67,11 +65,8 @@ Cloud Shell is a powerful tool that will help you greatly in your Google Cloud j
 
 ## Fetch the source code
 
-To deploy our web application, we need its source code. We will use git to fetch the [public Github repository](https://github.com/mongodb-developer/Google-Cloud-MongoDB-Atlas-Workshop).
+You need the source code of the app in order to deploy it to Cloud Run. Run `git clone` in the Cloud Shell to fetch the [public Github repository](https://github.com/mongodb-developer/Google-Cloud-MongoDB-Atlas-Workshop).
 
-
-1. Run the following command inside the Cloud Shell:
-
-    ```sh
-    git clone https://github.com/mongodb-developer/Google-Cloud-MongoDB-Atlas-Workshop.git
-    ```
+```
+git clone https://github.com/mongodb-developer/Google-Cloud-MongoDB-Atlas-Workshop.git
+```
